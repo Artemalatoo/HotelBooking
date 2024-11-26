@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="VBox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bookinghotel.HelloController">
+   <children>
+      <TabPane prefHeight="403.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Registration">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="te" layoutX="14.0" layoutY="21.0" promptText="name" />
+                        <TextField layoutX="15.0" layoutY="90.0" promptText="passport id" />
+                        <ListView layoutX="185.0" layoutY="3.0" prefHeight="148.0" prefWidth="398.0" />
+                        <Button layoutX="14.0" layoutY="173.0" mnemonicParsing="false" text="Add" />
+                        <TextField layoutX="14.0" layoutY="54.0" promptText="last name" />
+                        <TextField layoutX="15.0" layoutY="125.0" promptText="phone number" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Booking room">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <DatePicker layoutX="14.0" layoutY="14.0" promptText="entery day" />
+                        <DatePicker layoutX="14.0" layoutY="46.0" promptText="departure day" />
+                        <ChoiceBox fx:id="myChoiceBox" layoutX="281.0" layoutY="14.0" prefWidth="150.0" />
+                        <Spinner layoutX="282.0" layoutY="46.0" />
+                        <Button layoutX="14.0" layoutY="118.0" mnemonicParsing="false" text="calculate price" />
+                        <ListView layoutX="125.0" layoutY="118.0" prefHeight="200.0" prefWidth="434.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</fx:root>
