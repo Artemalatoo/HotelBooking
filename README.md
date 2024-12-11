@@ -19,3 +19,8 @@ public void handleCalculatePrice() {
             return;
         } get value for date picker to select days.
 checked isavaible or not.
+Project roles:
+1 David created abstract class and subclasses for the project 
+2 Artem created interface and hellocontroller for the project 
+we distributed presentation roles. 
+
