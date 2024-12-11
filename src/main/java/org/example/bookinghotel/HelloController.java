@@ -70,8 +70,6 @@ public class HelloController {
         String output = String.format("Registered: %s %s\nPassport ID: %s\nPhone: %s\n",
                 name, lastName, passportId, phoneNumber);
         registrationOutput.setText(output);
-
-        // Clear fields after registration
         nameField.clear();
         lastNameField.clear();
         passportIdField.clear();
@@ -104,8 +102,6 @@ public class HelloController {
 
         int guests = guestsSpinner.getValue();
         double totalPrice = selectedRoom.getPricePerNight() * nights * guests;
-
-        // Mark room as booked
         selectedRoom.bookRoom();
 
         bookingOutput.setText(String.format("Room: %s\nNights: %d\nGuests: %d\nTotal Price: $%.2f\nRoom booked successfully.",
