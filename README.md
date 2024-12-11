@@ -27,3 +27,27 @@ we distributed presentation roles.
 
 https://docs.google.com/document/d/1X5284J6OGN2Cgo_s03bm0xrHe1c219c5ak2ur--_CWU/edit?usp=sharing
 
+
++--------------------------+
+|        <<abstract>>       |
+|          Room             |
++--------------------------+
+| - roomNumber: String      |
+| - price: Double           |
++--------------------------+
+| + getPrice(): Double      |
+| + getRoomNumber(): String|
+| + Availabe(): Boolean |
++--------------------------+
+           ^
+           |
+    +------+------+
+    |      |      |
++------------+  +------------+   +-------------+
+| SingleRoom |  | DoubleRoom |   |  VipRoom    |
++------------+  +------------+   +-------------+
++------------------+  +-----------------+  +--------------------------+
+| + getPrice()     |  | + getPrice()    |  | + getPrice()             |
+| + getRoomNumber()|  | + getRoomNumber()| | +getRoomNumber()       |
++-------------------+  +------------------+  +--------------------------+
+
