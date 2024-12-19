@@ -3,37 +3,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
-         fx:controller="org.example.bookinghotel.HelloController" prefHeight="313.0" prefWidth="600.0">
+<TabPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17"
+         fx:controller="org.example.hotelbooking.HelloController" prefHeight="500.0" prefWidth="600.0">
+
     <tabs>
-        <!-- Registration Tab -->
-        <Tab text="Registration">
+        <Tab text="Registration 1">
             <AnchorPane>
-                <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
                     <TextField fx:id="nameField" promptText="Name" />
                     <TextField fx:id="lastNameField" promptText="Last Name" />
                     <TextField fx:id="passportIdField" promptText="Passport ID" />
                     <TextField fx:id="phoneNumberField" promptText="Phone Number" />
-                    <Button onAction="#handleAddRegistration" text="Add" />
-                </VBox>
-                <TextArea fx:id="registrationOutput" layoutX="200.0" layoutY="10.0" prefHeight="200.0" prefWidth="400.0"
-                          AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            </AnchorPane>
-        </Tab>
-
-        <!-- Booking Room Tab -->
-        <Tab text="Booking room">
-            <AnchorPane>
-                <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <ComboBox fx:id="roomTypeComboBox" promptText="Select Room Type" />
                     <DatePicker fx:id="entryDatePicker" promptText="Entry Date" />
                     <DatePicker fx:id="departureDatePicker" promptText="Departure Date" />
-                    <ComboBox fx:id="roomTypeComboBox" promptText="Select Room Type" />
                     <Spinner fx:id="guestsSpinner" />
-                    <Button onAction="#handleCalculatePrice" text="Calculate Price" />
+                    <Button onAction="#handleAddRegistration" text="Add Registration" />
                 </VBox>
                 <TextArea fx:id="bookingOutput" layoutX="200.0" layoutY="10.0" prefHeight="200.0" prefWidth="400.0"
                           AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             </AnchorPane>
+        </Tab>
+
+        <!-- Second Registration Tab -->
+        <Tab text="Registration 2">
+            <AnchorPane>
+                <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+                    <TextField fx:id="nameField2" promptText="Name" />
+                    <TextField fx:id="lastNameField2" promptText="Last Name" />
+                    <TextField fx:id="passportIdField2" promptText="Passport ID" />
+                    <TextField fx:id="phoneNumberField2" promptText="Phone Number" />
+                    <ComboBox fx:id="roomTypeComboBox2" promptText="Select Room Type" />
+                    <DatePicker fx:id="entryDatePicker2" promptText="Entry Date" />
+                    <DatePicker fx:id="departureDatePicker2" promptText="Departure Date" />
+                    <Spinner fx:id="guestsSpinner2" />
+                    <Button onAction="#handleAddRegistration2" text="Add Registration" />
+                </VBox>
+                <TextArea fx:id="bookingOutput2" layoutX="200.0" layoutY="10.0" prefHeight="200.0" prefWidth="400.0"
+                          AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            </AnchorPane>
+        </Tab>
+
+        <Tab text="Bookings">
+            <ListView fx:id="bookingListView" layoutX="10.0" layoutY="10.0" prefWidth="580.0" prefHeight="200.0"
+                      AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
         </Tab>
     </tabs>
 </TabPane>
