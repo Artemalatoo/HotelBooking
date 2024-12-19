@@ -1,120 +1,75 @@
-package org.example.bookinghotel;
+package org.example.hotelbooking;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HelloController {
-
-    @FXML
-    private TextField nameField;
-
-    @FXML
-    private TextField lastNameField;
-
-    @FXML
-    private TextField passportIdField;
-
-    @FXML
-    private TextField phoneNumberField;
-
-    @FXML
-    private TextArea registrationOutput;
-
-    @FXML
-    private DatePicker entryDatePicker;
-
-    @FXML
-    private DatePicker departureDatePicker;
-
-    @FXML
-    private ComboBox<Room> roomTypeComboBox;
-
-    @FXML
-    private Spinner<Integer> guestsSpinner;
-
-    @FXML
-    private TextArea bookingOutput;
-    private final List<Room> availableRooms = new ArrayList<>();
+    @FXML private TextField nameField;
+    @FXML private TextField lastNameField;
+    @FXML private TextField passportIdField;
+    @FXML private TextField phoneNumberField;
+    @FXML private TextArea registrationOutput;
+    @FXML private ComboBox<String> roomTypeComboBox;
+    @FXML private DatePicker entryDatePicker;
+    @FXML private DatePicker departureDatePicker;
+    @FXML private Spinner<Integer> guestsSpinner;
+    @FXML private TextArea bookingOutput;
 
     @FXML
     public void initialize() {
-
-        availableRooms.add(new SingleRoom("101", 50.0));
-        availableRooms.add(new DoubleRoom("102", 100.0));
-        availableRooms.add(new VipRoom("103", 200.0));
-
-        roomTypeComboBox.setItems(FXCollections.observableArrayList(availableRooms));
-
-        guestsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1));
+        ObservableList<String> roomTypes = FXCollections.observableArrayList("Single", "Double", "VIP");
+        roomTypeComboBox.setItems(roomTypes);
+        SpinnerValueFactory<Integer> guestsFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1);
+        guestsSpinner.setValueFactory(guestsFactory);
     }
-
     @FXML
     public void handleAddRegistration() {
         String name = nameField.getText();
         String lastName = lastNameField.getText();
         String passportId = passportIdField.getText();
-        String phoneNumber = phoneNumberField.getText();
+        String phone = phoneNumberField.getText();
 
-        if (name.isEmpty() || lastName.isEmpty() || passportId.isEmpty() || phoneNumber.isEmpty()) {
-            registrationOutput.setText("Please fill out all fields.");
-            return;
-        }
-
-        String output = String.format("Registered: %s %s\nPassport ID: %s\nPhone: %s\n",
-                name, lastName, passportId, phoneNumber);
-        registrationOutput.setText(output);
-        nameField.clear();
-        lastNameField.clear();
-        passportIdField.clear();
-        phoneNumberField.clear();
+        registrationOutput.setText("Name: " + name + "\nLast Name: " + lastName +
+                "\nPassport ID: " + passportId + "\nPhone: " + phone);
     }
     @FXML
     public void handleCalculatePrice() {
-        if (entryDatePicker.getValue() == null || departureDatePicker.getValue() == null) {
-            bookingOutput.setText("Please select both entry and departure dates.");
-            return;
-        }
-
-        Room selectedRoom = roomTypeComboBox.getValue();
-        if (selectedRoom == null) {
-            bookingOutput.setText("Please select a room.");
-            return;
-        }
-
-        if (!selectedRoom.isAvailable()) {
-            bookingOutput.setText("The selected room is not available.");
-            return;
-        }
-
-        long nights = departureDatePicker.getValue().toEpochDay() - entryDatePicker.getValue().toEpochDay();
-
-        if (nights <= 0) {
-            bookingOutput.setText("Departure date must be after the entry date.");
-            return;
-        }
-
-        int guests = guestsSpinner.getValue();
-        double totalPrice = selectedRoom.getPricePerNight() * nights * guests;
-        selectedRoom.bookRoom();
-
-        bookingOutput.setText(String.format("Room: %s\nNights: %d\nGuests: %d\nTotal Price: $%.2f\nRoom booked successfully.",
-                selectedRoom.getRoomNumber(), nights, guests, totalPrice));
-    }
-
-    public ObservableList<Room> getAvailableRooms() {
-        ObservableList<Room> available = FXCollections.observableArrayList();
-        for (Room room : availableRooms) {
-            if (room.isAvailable()) {
-                available.add(room);
+        try {
+            
+            String roomType = roomTypeComboBox.getValue();
+            if (roomType == null) {
+                bookingOutput.setText("Please select a room type.");
+                return;
             }
+
+            int guests = guestsSpinner.getValue();
+            if (entryDatePicker.getValue() == null || departureDatePicker.getValue() == null) {
+                bookingOutput.setText("Please select both entry and departure dates.");
+                return;
+            }
+
+            LocalDate entryDate = entryDatePicker.getValue();
+            LocalDate departureDate = departureDatePicker.getValue();
+            if (!departureDate.isAfter(entryDate)) {
+                bookingOutput.setText("Departure date must be after entry date.");
+                return;
+            }
+            Room room;
+            switch (roomType) {
+                case "Single" -> room = new SingleRoom("S101", 50.0);
+                case "Double" -> room = new DoubleRoom("D201", 75.0);
+                case "VIP" -> room = new VipRoom("V301", 150.0);
+                default -> throw new IllegalStateException("Unexpected room type: " + roomType);
+            }
+            Booking booking = new Booking(room, entryDate, departureDate);
+            bookingOutput.setText("Booking Successful:\n" +
+                    booking.toString() + "\nGuests: " + guests);
+        } catch (Exception e) {
+            bookingOutput.setText("Error: " + e.getMessage());
         }
-        return available;
     }
 }
