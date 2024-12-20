@@ -44,6 +44,9 @@ The Hotel Booking System is a Java-based application designed to manage hotel ro
 # Weekly Meeting Documentation
 **Weekly meeting summaries and action items can be found in the [Google Docs Link](https://docs.google.com/document/d/1X5284J6OGN2Cgo_s03bm0xrHe1c219c5ak2ur--_CWU/edit?usp=sharing)**
 
+# Presentation:
+**Presentstion can be viewed via this link: [Presentation](https://docs.google.com/presentation/d/1l2PExapqQbr64Xpr7aRNWP1fYTERbfujmjCYfx8Rpt0/edit?usp=sharing)**
+
 # Screenshots:
 
 ![photo_5415672440354369547_w](https://github.com/user-attachments/assets/939288c8-4dd2-4d2d-b27b-92c3b2ef297d)
