@@ -29,12 +29,12 @@ The Hotel Booking System is a Java-based application designed to manage hotel ro
 # Team Members List:
 **Ten Artem: Interface designer, Project manager.**
 
-**Eremin David: Class developer, Tester.**
+**Islam: Class developer, Tester.**
 
 # Role of group members:
 **Ten Artem: Designed interface and wrote code for HelloController, integrated database functions.**
 
-**Eremin David: Wrote abstract class and subclasses, made presentation and worked on the README file.**
+**Islam: Wrote abstract class and subclasses, made presentation and worked on the README file.**
 
 # UML Class Diagram
 **The UML class diagram provides a visual representation of the system’s structure, detailing the classes, attributes, methods, and their relationships.**
